@@ -1,0 +1,31 @@
+# MCP (Model Context Protocol) officiel - version compatible
+mcp==1.16.0
+
+# Serveur web et API - versions compatibles avec MCP
+fastapi>=0.110.0
+uvicorn[standard]>=0.25.0
+sse-starlette>=2.0.0
+
+# Validation et modèles de données
+pydantic>=2.8.0
+
+# Client HTTP et utilitaires
+requests>=2.31.0
+aiohttp>=3.10.0
+httpx>=0.27.0
+
+# Configuration et environnement
+python-dotenv>=1.0.0
+pydantic-settings>=2.4.0
+
+# Logging et monitoring
+structlog==23.2.0
+loguru==0.7.2
+
+# Utilitaires système
+click==8.1.7
+rich==13.7.0
+tenacity==8.2.3
+
+# Production
+gunicorn==21.2.0
