@@ -5,9 +5,8 @@ services:
       dockerfile: Dockerfile
     container_name: kodi-mcp-server
     restart: unless-stopped
-    network_mode: host
-    #ports:
-    #  - "${SERVER_PORT:-8080}:8080"
+    ports:
+      - "8081:8080"
     #volumes:
     # - ./logs:/app/logs
     #  - ./data:/app/data  # Pour des données persistantes si nécessaire
