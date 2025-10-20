@@ -21,6 +21,15 @@ services:
       start_period: 10s
     depends_on: []
     environment:
+      - KODI_HOST=${KODI_HOST}
+      - KODI_PORT=${KODI_PORT}
+      - KODI_USERNAME=${KODI_USERNAME}
+      - KODI_PASSWORD=${KODI_PASSWORD}
+      - KODI_DOWNLOADS_PATH=${KODI_DOWNLOADS_PATH}
+      - SERVER_HOST=${SERVER_HOST:-0.0.0.0}
+      - SERVER_PORT=${SERVER_PORT:-8080}
+      - MCP_SERVER_NAME=${MCP_SERVER_NAME:-kodi-controller}
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}   
       - ENVIRONMENT=production
     logging:
       driver: "json-file"
