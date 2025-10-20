@@ -27,10 +27,6 @@ services:
         max-size: "10m"
         max-file: "3"
 
-# Volume nommé pour la persistance (optionnel)
-volumes:
-  kodi-data:
-    driver: local
 
 networks:
   kodi-network:
