@@ -93,8 +93,7 @@ MCP_TOOLS_SPEC = [
                     "type": "integer",
                     "description": "Niveau de volume (0-100)",
                     "minimum": 0,
-                    "maximum": 100,
-                    "inputType": "number"
+                    "maximum": 100
                 }
             },
             "required": ["level"]
@@ -109,8 +108,7 @@ MCP_TOOLS_SPEC = [
                 "direction": {
                     "type": "string",
                     "description": "Direction de navigation",
-                    "enum": ["up", "down", "left", "right", "select", "back"],
-                    "inputType": "select"
+                    "enum": ["up", "down", "left", "right", "select", "back"]
                 }
             },
             "required": ["direction"]
@@ -124,8 +122,7 @@ MCP_TOOLS_SPEC = [
             "properties": {
                 "query": {
                     "type": "string",
-                    "description": "Terme de recherche",
-                    "inputType": "text"
+                    "description": "Terme de recherche"
                 }
             },
             "required": ["query"]
@@ -142,8 +139,7 @@ MCP_TOOLS_SPEC = [
                     "description": "Nombre de films à retourner (défaut: 20)",
                     "minimum": 1,
                     "maximum": 100,
-                    "default": 20,
-                    "inputType": "number"
+                    "default": 20
                 }
             },
             "required": []
@@ -167,8 +163,7 @@ MCP_TOOLS_SPEC = [
                 "movie_id": {
                     "type": "integer",
                     "description": "ID du film dans la bibliothèque Kodi",
-                    "minimum": 1,
-                    "inputType": "number"
+                    "minimum": 1
                 }
             },
             "required": ["movie_id"]
@@ -183,20 +178,17 @@ MCP_TOOLS_SPEC = [
                 "tvshow_id": {
                     "type": "integer",
                     "description": "ID de la série",
-                    "minimum": 1,
-                    "inputType": "number"
+                    "minimum": 1
                 },
                 "season": {
                     "type": "integer",
                     "description": "Numéro de saison",
-                    "minimum": 1,
-                    "inputType": "number"
+                    "minimum": 1
                 },
                 "episode": {
                     "type": "integer", 
                     "description": "Numéro d'épisode",
-                    "minimum": 1,
-                    "inputType": "number"
+                    "minimum": 1
                 }
             },
             "required": ["tvshow_id", "season", "episode"]
@@ -221,8 +213,7 @@ MCP_TOOLS_SPEC = [
                     "type": "string",
                     "description": "Type de bibliothèque à scanner",
                     "enum": ["video", "audio"],
-                    "default": "video",
-                    "inputType": "select"
+                    "default": "video"
                 }
             },
             "required": []
@@ -239,8 +230,7 @@ MCP_TOOLS_SPEC = [
                     "description": "Nombre de fichiers à retourner (défaut: 50)",
                     "minimum": 1,
                     "maximum": 100,
-                    "default": 50,
-                    "inputType": "number"
+                    "default": 50
                 }
             },
             "required": []
@@ -254,8 +244,7 @@ MCP_TOOLS_SPEC = [
             "properties": {
                 "file_path": {
                     "type": "string",
-                    "description": "Chemin complet du fichier vidéo à lancer",
-                    "inputType": "text"
+                    "description": "Chemin complet du fichier vidéo à lancer"
                 }
             },
             "required": ["file_path"]
@@ -269,8 +258,7 @@ MCP_TOOLS_SPEC = [
             "properties": {
                 "query": {
                     "type": "string",
-                    "description": "Terme de recherche pour filtrer les fichiers",
-                    "inputType": "text"
+                    "description": "Terme de recherche pour filtrer les fichiers"
                 }
             },
             "required": ["query"]
