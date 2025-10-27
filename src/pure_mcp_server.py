@@ -57,7 +57,7 @@ mcp_manager = MCPSSEManager()
 # Spécification des tools MCP selon le standard
 MCP_TOOLS_SPEC = [
     {
-        "name": "get_now_playing",
+        "name": "getnowplaying",
         "description": "Récupère ce qui joue actuellement sur Kodi (titre, durée, temps écoulé, etc.)",
         "inputSchema": {
             "type": "object",
@@ -66,7 +66,7 @@ MCP_TOOLS_SPEC = [
         }
     },
     {
-        "name": "player_play_pause",
+        "name": "playerplaypause",
         "description": "Toggle play/pause sur le player actif de Kodi",
         "inputSchema": {
             "type": "object", 
@@ -75,7 +75,7 @@ MCP_TOOLS_SPEC = [
         }
     },
     {
-        "name": "player_stop",
+        "name": "playerstop",
         "description": "Arrêter la lecture sur Kodi",
         "inputSchema": {
             "type": "object",
@@ -84,13 +84,14 @@ MCP_TOOLS_SPEC = [
         }
     },
     {
-        "name": "set_volume",
+        "name": "setvolume",
         "description": "Régler le volume de Kodi (0-100)",
         "inputSchema": {
             "type": "object",
             "properties": {
                 "level": {
                     "type": "integer",
+                    "title": "Level",
                     "description": "Niveau de volume (0-100)",
                     "minimum": 0,
                     "maximum": 100
@@ -100,13 +101,14 @@ MCP_TOOLS_SPEC = [
         }
     },
     {
-        "name": "navigate_menu",
+        "name": "navigatemenu",
         "description": "Navigation dans l'interface de Kodi",
         "inputSchema": {
             "type": "object",
             "properties": {
                 "direction": {
                     "type": "string",
+                    "title": "Direction",
                     "description": "Direction de navigation",
                     "enum": ["up", "down", "left", "right", "select", "back"]
                 }
@@ -115,13 +117,14 @@ MCP_TOOLS_SPEC = [
         }
     },
     {
-        "name": "search_movies",
+        "name": "searchmovies",
         "description": "Chercher des films dans la bibliothèque Kodi",
         "inputSchema": {
             "type": "object",
             "properties": {
                 "query": {
                     "type": "string",
+                    "title": "Query",
                     "description": "Terme de recherche"
                 }
             },
@@ -129,13 +132,14 @@ MCP_TOOLS_SPEC = [
         }
     },
     {
-        "name": "list_recent_movies", 
+        "name": "listrecentmovies",
         "description": "Liste les films récemment ajoutés à Kodi",
         "inputSchema": {
             "type": "object",
             "properties": {
                 "limit": {
                     "type": "integer",
+                    "title": "Limit",
                     "description": "Nombre de films à retourner (défaut: 20)",
                     "minimum": 1,
                     "maximum": 100,
@@ -146,7 +150,7 @@ MCP_TOOLS_SPEC = [
         }
     },
     {
-        "name": "list_tv_shows",
+        "name": "listtvshows",
         "description": "Liste toutes les séries TV dans Kodi",
         "inputSchema": {
             "type": "object",
@@ -155,47 +159,51 @@ MCP_TOOLS_SPEC = [
         }
     },
     {
-        "name": "play_movie",
+        "name": "playmovie",
         "description": "Lancer un film par son ID dans Kodi",
         "inputSchema": {
             "type": "object",
             "properties": {
-                "movie_id": {
+                "movieid": {
                     "type": "integer",
+                    "title": "Movie ID",
                     "description": "ID du film dans la bibliothèque Kodi",
                     "minimum": 1
                 }
             },
-            "required": ["movie_id"]
+            "required": ["movieid"]
         }
     },
     {
-        "name": "play_episode",
+        "name": "playepisode",
         "description": "Lancer un épisode de série dans Kodi",
         "inputSchema": {
             "type": "object",
             "properties": {
-                "tvshow_id": {
+                "tvshowid": {
                     "type": "integer",
+                    "title": "TV Show ID",
                     "description": "ID de la série",
                     "minimum": 1
                 },
                 "season": {
                     "type": "integer",
+                    "title": "Season",
                     "description": "Numéro de saison",
                     "minimum": 1
                 },
                 "episode": {
-                    "type": "integer", 
+                    "type": "integer",
+                    "title": "Episode",
                     "description": "Numéro d'épisode",
                     "minimum": 1
                 }
             },
-            "required": ["tvshow_id", "season", "episode"]
+            "required": ["tvshowid", "season", "episode"]
         }
     },
     {
-        "name": "get_library_stats",
+        "name": "getlibrarystats",
         "description": "Récupérer les statistiques de la bibliothèque Kodi (films, séries, épisodes, musique)",
         "inputSchema": {
             "type": "object",
@@ -204,13 +212,14 @@ MCP_TOOLS_SPEC = [
         }
     },
     {
-        "name": "scan_library",
+        "name": "scanlibrary",
         "description": "Lancer un scan de la bibliothèque Kodi",
         "inputSchema": {
             "type": "object",
             "properties": {
-                "library_type": {
+                "librarytype": {
                     "type": "string",
+                    "title": "Library Type",
                     "description": "Type de bibliothèque à scanner",
                     "enum": ["video", "audio"],
                     "default": "video"
@@ -220,13 +229,14 @@ MCP_TOOLS_SPEC = [
         }
     },
     {
-        "name": "list_downloads",
+        "name": "listdownloads",
         "description": "Liste tous les fichiers vidéo dans le dossier downloads (récursif)",
         "inputSchema": {
             "type": "object",
             "properties": {
                 "limit": {
                     "type": "integer",
+                    "title": "Limit",
                     "description": "Nombre de fichiers à retourner (défaut: 50)",
                     "minimum": 1,
                     "maximum": 100,
@@ -237,27 +247,29 @@ MCP_TOOLS_SPEC = [
         }
     },
     {
-        "name": "play_file",
+        "name": "playfile",
         "description": "Lance un fichier vidéo par son chemin complet",
         "inputSchema": {
             "type": "object",
             "properties": {
-                "file_path": {
+                "filepath": {
                     "type": "string",
+                    "title": "File Path",
                     "description": "Chemin complet du fichier vidéo à lancer"
                 }
             },
-            "required": ["file_path"]
+            "required": ["filepath"]
         }
     },
     {
-        "name": "search_downloads",
+        "name": "searchdownloads",
         "description": "Cherche des fichiers dans le dossier downloads par nom (insensible à la casse)",
         "inputSchema": {
             "type": "object",
             "properties": {
                 "query": {
                     "type": "string",
+                    "title": "Query",
                     "description": "Terme de recherche pour filtrer les fichiers"
                 }
             },
@@ -299,13 +311,13 @@ def execute_kodi_tool(name: str, arguments: Dict[str, Any]) -> Dict[str, Any]:
     logger.info(f"Exécution tool MCP: {name} avec arguments: {arguments}")
     
     try:
-        if name == "get_now_playing":
+        if name == "getnowplaying":
             res = kodi.get_now_playing()
-        elif name == "player_play_pause":
+        elif name == "playerplaypause":
             res = kodi.player_play_pause()
-        elif name == "player_stop":
+        elif name == "playerstop":
             res = kodi.player_stop()
-        elif name == "set_volume":
+        elif name == "setvolume":
             level = arguments.get("level")
             if level is None:
                 return {
@@ -313,7 +325,7 @@ def execute_kodi_tool(name: str, arguments: Dict[str, Any]) -> Dict[str, Any]:
                     "error": "Paramètre 'level' manquant"
                 }
             res = kodi.set_volume(int(level))
-        elif name == "navigate_menu":
+        elif name == "navigatemenu":
             direction = arguments.get("direction")
             if direction is None:
                 return {
@@ -321,7 +333,7 @@ def execute_kodi_tool(name: str, arguments: Dict[str, Any]) -> Dict[str, Any]:
                     "error": "Paramètre 'direction' manquant"
                 }
             res = kodi.navigate_menu(str(direction))
-        elif name == "search_movies":
+        elif name == "searchmovies":
             query = arguments.get("query")
             if query is None:
                 return {
@@ -329,47 +341,47 @@ def execute_kodi_tool(name: str, arguments: Dict[str, Any]) -> Dict[str, Any]:
                     "error": "Paramètre 'query' manquant"
                 }
             res = kodi.search_movies(str(query))
-        elif name == "list_recent_movies":
+        elif name == "listrecentmovies":
             limit = arguments.get("limit", 20)
             res = kodi.list_recent_movies(int(limit))
-        elif name == "list_tv_shows":
+        elif name == "listtvshows":
             res = kodi.list_tv_shows()
-        elif name == "play_movie":
-            movie_id = arguments.get("movie_id")
+        elif name == "playmovie":
+            movie_id = arguments.get("movieid")
             if movie_id is None:
                 return {
                     "success": False,
-                    "error": "Paramètre 'movie_id' manquant"
+                    "error": "Paramètre 'movieid' manquant"
                 }
             res = kodi.play_movie(int(movie_id))
-        elif name == "play_episode":
-            tvshow_id = arguments.get("tvshow_id")
+        elif name == "playepisode":
+            tvshow_id = arguments.get("tvshowid")
             season = arguments.get("season")
             episode = arguments.get("episode")
             
             if any(x is None for x in [tvshow_id, season, episode]):
                 return {
                     "success": False,
-                    "error": "Paramètres 'tvshow_id', 'season', 'episode' requis"
+                    "error": "Paramètres 'tvshowid', 'season', 'episode' requis"
                 }
             res = kodi.play_episode(int(tvshow_id), int(season), int(episode))
-        elif name == "get_library_stats":
+        elif name == "getlibrarystats":
             res = kodi.get_library_stats()
-        elif name == "scan_library":
-            library_type = arguments.get("library_type", "video")
+        elif name == "scanlibrary":
+            library_type = arguments.get("librarytype", "video")
             res = kodi.scan_library(str(library_type))
-        elif name == "list_downloads":
+        elif name == "listdownloads":
             limit = arguments.get("limit", 50)
             res = list_downloads_files(int(limit))
-        elif name == "play_file":
-            file_path = arguments.get("file_path")
+        elif name == "playfile":
+            file_path = arguments.get("filepath")
             if file_path is None:
                 return {
                     "success": False,
-                    "error": "Paramètre 'file_path' manquant"
+                    "error": "Paramètre 'filepath' manquant"
                 }
             res = kodi.play_file(str(file_path))
-        elif name == "search_downloads":
+        elif name == "searchdownloads":
             query = arguments.get("query")
             if query is None:
                 return {
@@ -455,6 +467,12 @@ def handle_jsonrpc_request(message: dict) -> dict:
             }
             
             validated_tools.append(clean_tool)
+        
+        # Debug pour Langfuse
+        logger.error('=== DEBUG MCP TOOLS ===')
+        for idx, tool in enumerate(validated_tools):
+            logger.error(f"Tool {idx}: {json.dumps(tool, indent=2, ensure_ascii=False)}")
+        logger.error('=======================')
         
         logger.info(f"Retour de {len(validated_tools)} tools validés")
         
