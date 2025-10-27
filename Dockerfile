@@ -45,5 +45,5 @@ EXPOSE 8080
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
   CMD curl -f http://localhost:8080/health || exit 1
 
-# Commande par défaut
-CMD ["python", "-m", "uvicorn", "src.hybrid_server:app", "--host", "0.0.0.0", "--port", "8080"]
+# Commande par défaut - Pure MCP Server (standard MCP protocol)
+CMD ["python", "-m", "uvicorn", "src.pure_mcp_server:app", "--host", "0.0.0.0", "--port", "8080"]

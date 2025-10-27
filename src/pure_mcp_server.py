@@ -433,11 +433,36 @@ def handle_jsonrpc_request(message: dict) -> dict:
     
     # Tools/list - Liste des tools disponibles
     elif method == "tools/list":
+        # Validation des tools avant envoi
+        validated_tools = []
+        for tool in MCP_TOOLS_SPEC:
+            # Vérifier que toutes les propriétés requises sont présentes
+            if not tool.get("name"):
+                logger.error(f"Tool sans nom détecté: {tool}")
+                continue
+            if not tool.get("description"):
+                logger.error(f"Tool {tool.get('name')} sans description")
+                continue
+            if not tool.get("inputSchema"):
+                logger.error(f"Tool {tool.get('name')} sans inputSchema")
+                continue
+            
+            # Nettoyer le tool de toute propriété None/undefined
+            clean_tool = {
+                "name": str(tool["name"]),
+                "description": str(tool["description"]),
+                "inputSchema": tool["inputSchema"]
+            }
+            
+            validated_tools.append(clean_tool)
+        
+        logger.info(f"Retour de {len(validated_tools)} tools validés")
+        
         return {
             "jsonrpc": "2.0",
             "id": msg_id,
             "result": {
-                "tools": MCP_TOOLS_SPEC
+                "tools": validated_tools
             }
         }
     
